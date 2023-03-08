@@ -5,11 +5,13 @@ import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Avatar, IconButton } from '@mui/material';
 import { SearchOutlined } from '@mui/icons-material';
+import SidebarChat from './SidebarChat';
 // import myImage from './assets/my-image.png';
 
 function Sidebar() {
   return (
     <div className="sidebar">
+
         <div className="sidebar__header">
           <Avatar src="./assets/my-image.png"/>
 
@@ -36,6 +38,15 @@ function Sidebar() {
             <input placeholder="Search or start new chat" type="text"/>
           </div>
         </div>
+
+        <div className="sidebar__chats">
+          <SidebarChat/>
+          <SidebarChat/>
+          <SidebarChat/>
+          <SidebarChat/>
+        </div>
+
+
     </div>
   )
 }
