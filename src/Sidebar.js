@@ -10,9 +10,9 @@ function Sidebar() {
   return (
     <div className="sidebar">
         <div className="sidebar__header">
-          <div className="sidebar__headerRight">
+          <Avatar src="./assets/my-image.png"/>
           
-            <Avatar src="./assets/my-image.png"/>
+          <div className="sidebar__headerRight">         
 
             <IconButton> 
               <DonutLargeIcon/>
