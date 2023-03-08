@@ -27,7 +27,7 @@ function Chat() {
 
         <div className="chat__body">
           
-          {/* this is one message */}
+          {/* this is the other person's message */}
           <p className="chat__message">          
             {/* the message */}
             <span className="chat__name">cubo</span>
@@ -38,7 +38,9 @@ function Chat() {
             </span>
           </p>
 
-          <p className="chat__message">          
+          {/* this is your message */}
+          {/* note: we're keeping the styling of the original message, but adding additional stylings for receiver's message */}
+          <p className="chat__message chat__receiver">          
             {/* the message */}
             <span className="chat__name">cubo</span>
             This is a message
@@ -48,26 +50,8 @@ function Chat() {
             </span>
           </p>
 
-          <p className="chat__message">          
-            {/* the message */}
-            <span className="chat__name">cubo</span>
-            This is a message
-            {/* message timestamp */}
-            <span className="chat__timestamp">
-              {new Date().toUTCString()}
-            </span>
-          </p>
 
-          <p className="chat__message">          
-            {/* the message */}
-            <span className="chat__name">cubo</span>
-            This is a message
-            {/* message timestamp */}
-            <span className="chat__timestamp">
-              {new Date().toUTCString()}
-            </span>
-          </p>
-                    
+
         </div>
 
     </div>
