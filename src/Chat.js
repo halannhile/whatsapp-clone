@@ -27,19 +27,47 @@ function Chat() {
 
         <div className="chat__body">
           
-          {/* inside these p tags are where all the messages lie */}
-          <p className="chat__message">
-            
+          {/* this is one message */}
+          <p className="chat__message">          
             {/* the message */}
             <span className="chat__name">cubo</span>
             This is a message
-
             {/* message timestamp */}
             <span className="chat__timestamp">
               {new Date().toUTCString()}
             </span>
-
           </p>
+
+          <p className="chat__message">          
+            {/* the message */}
+            <span className="chat__name">cubo</span>
+            This is a message
+            {/* message timestamp */}
+            <span className="chat__timestamp">
+              {new Date().toUTCString()}
+            </span>
+          </p>
+
+          <p className="chat__message">          
+            {/* the message */}
+            <span className="chat__name">cubo</span>
+            This is a message
+            {/* message timestamp */}
+            <span className="chat__timestamp">
+              {new Date().toUTCString()}
+            </span>
+          </p>
+
+          <p className="chat__message">          
+            {/* the message */}
+            <span className="chat__name">cubo</span>
+            This is a message
+            {/* message timestamp */}
+            <span className="chat__timestamp">
+              {new Date().toUTCString()}
+            </span>
+          </p>
+                    
         </div>
 
     </div>
