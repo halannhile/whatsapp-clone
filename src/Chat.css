@@ -71,10 +71,19 @@
 
 .chat__footer {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    background-color: #f6f6f6;
-    height: 39px;
-    padding: 10px;
+    height: 62px;
+    border-top: 1px solid lightgray;
+}
+
+.chat__footer > form {
+    flex: 1;
+    display: flex;
+}
+
+.chat__footer > form > input {
+
 }
 
 .chat__footer > .MuiSvgIcon-root {
