@@ -4,6 +4,7 @@ import ChatIcon from '@mui/icons-material/Chat';
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Avatar, IconButton } from '@mui/material';
+import { SearchOutlined } from '@mui/icons-material';
 // import myImage from './assets/my-image.png';
 
 function Sidebar() {
@@ -11,7 +12,7 @@ function Sidebar() {
     <div className="sidebar">
         <div className="sidebar__header">
           <Avatar src="./assets/my-image.png"/>
-          
+
           <div className="sidebar__headerRight">         
 
             <IconButton> 
@@ -26,6 +27,13 @@ function Sidebar() {
               <MoreVertIcon/>
             </IconButton>
 
+          </div>
+        </div>
+
+        <div className="sidebar__search">
+          <div className="sidebar__searchContainer">
+            <SearchOutlined/>
+            <input placeholder="Search or start new chat" type="text"/>
           </div>
         </div>
     </div>
