@@ -3,7 +3,11 @@ import './Sidebar.css';
 import ChatIcon from '@mui/icons-material/Chat';
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Avatar, IconButton } from '@mui/material';
+import { IconButton } from '@mui/material';
+
+import { Avatar } from '@mui/material';
+// import avatarIcon from '../assets/my_image.png';
+
 import { SearchOutlined } from '@mui/icons-material';
 import SidebarChat from './SidebarChat';
 // import myImage from './assets/my-image.png';
@@ -13,7 +17,8 @@ function Sidebar() {
     <div className="sidebar">
 
         <div className="sidebar__header">
-          <Avatar src="./assets/my-image.png"/>
+          <Avatar src="../assets/my_image.png"/>
+          {/* <Avatar src={avatarIcon}/> */}
 
           <div className="sidebar__headerRight">         
 

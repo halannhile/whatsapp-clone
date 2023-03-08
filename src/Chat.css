@@ -26,3 +26,40 @@
 .chat__headerInfo > p {
     color: gray;
 }
+
+.chat__body {
+    flex:1;
+    background-image: url("../assets/whatsapp_background.png");
+    /*background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");*/
+    
+    /* when we scroll down, the bg image repeats itself */
+    background-repeat: repeat;
+    background-position: center;
+    padding: 30px;
+    overflow: scroll;
+}
+
+.chat__message {
+    /* position relative here makes sure when we position absolute for the components (person name, message, timestamp), it's gonna be relative to this entire component */
+    /* check out the styling of chat__name below to understand */
+    position: relative;
+    font-size: 16px;
+    padding: 10px;
+    /* make sure contents fit inside message box */
+    width: fit-content;
+    border-radius: 10px;
+    background-color: #ffffff;
+    margin-bottom: 30px;
+}
+
+.chat__timestamp {
+    margin-left: 10px;
+    font-size: xx-small;
+}
+
+.chat__name {
+    position: absolute;
+    top: -15px;
+    font-weight: 800;
+    font-size: xx-small;
+}
