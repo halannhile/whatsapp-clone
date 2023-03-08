@@ -55,13 +55,22 @@ function Chat() {
         </div>
 
         <div className="chat__footer">
+          
           <InsertEmoticonIcon/>
-          <div className="chat__footerMessageContainer">
-            <input placeholder="Type a message" type="text"/>
-          </div>
+          
+          {/* note: using a form for the message box (unlike sidebar's search which uses input) */}
+          <form>
+            <input
+              placeholder="Type a message"
+              type="text"
+            />
+            <button type="submit">
+              Send a message
+            </button>
+          </form>
+          
           <MicIcon/>
         </div>
-
         </div>
   )
 }
