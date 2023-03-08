@@ -3,3 +3,26 @@
     flex-direction: column;
     flex: 0.65;
 }
+
+.chat__header {
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+}
+
+.chat__headerInfo {
+    padding-left: 20px;
+    /* push this component as far as possible */
+    flex: 1;
+}
+
+.chat__headerInfo > h3 {
+    margin-bottom: 3px;
+    /* changing the boldness of the text */
+    font-weight: 500;
+}
+
+.chat__headerInfo > p {
+    color: gray;
+}
