@@ -3,6 +3,9 @@ import { Avatar, IconButton } from '@mui/material'
 import React from 'react'
 import "./Chat.css"
 
+import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
+import MicIcon from '@mui/icons-material/Mic';
+
 function Chat() {
   return (
     <div className="chat">
@@ -49,12 +52,17 @@ function Chat() {
               {new Date().toUTCString()}
             </span>
           </p>
-
-
-
         </div>
 
-    </div>
+        <div className="chat__footer">
+          <InsertEmoticonIcon/>
+          <div className="chat__footerMessageContainer">
+            <input placeholder="Type a message" type="text"/>
+          </div>
+          <MicIcon/>
+        </div>
+
+        </div>
   )
 }
 
