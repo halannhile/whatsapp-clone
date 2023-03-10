@@ -9,6 +9,7 @@ const whatsappSchema = mongoose.Schema({
 });
 
 // setting up the collection: 
+// note: messageContent or messagecontent is one thing, MongoDB cluster is NOT case-sensitive
 export default mongoose.model(
-    'messageContent', whatsappSchema
+    'messagecontents', whatsappSchema
 )

@@ -34,7 +34,31 @@ mongoose.connect(connection_url, {
     useUnifiedTopology: true
 })
 
-// 5. ???
+// 5. CHANGE STREAM: gonna listen to our database and if there's a change, it will trigger pusher
+const db = mongoose.connection
+
+db.once('open',()=>{
+    console.log('DB is connected');
+    // note: the collection name "messagecontents" here has to be consistent with dbMessages because this collection will be watching
+    const msgCollection = db.collection("messagecontents");
+    const changeStream = msgCollection.watch();
+
+    // function to fire up once something has changed in our database: 
+    changeStream.on('change', (change)=>{
+        console.log("a change occured",change);
+
+        if (change.operationType === 'insert') {
+            const messageDetails = change.fullDocument;
+            pusher.trigger('messages', 'inserted',
+            {
+                name: messageDetails.user,
+                message: messageDetails.message
+            })
+        }
+    });
+});
+
+
 
 // 6. API ROUTES:  
 app.get("/",(req,res)=>res.status(200).send('hello world'))
