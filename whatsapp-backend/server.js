@@ -7,7 +7,8 @@ import Messages from "./dbMessages.js";
 const app = express()
 const port = process.env.PORT || 9000 // the port where app will run 
 
-// MIDDLEWARE 
+// MIDDLEWARE: 
+app.use(express.json)
 
 // DATABASE CONFIG (MongoDB)
 
