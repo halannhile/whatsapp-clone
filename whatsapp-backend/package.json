@@ -7,12 +7,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
-    
   },
   "author": "Nhi Le",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "mongoose": "^7.0.1"
+    "mongoose": "^7.0.1",
+    "pusher": "^5.1.2"
   }
 }

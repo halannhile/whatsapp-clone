@@ -2,10 +2,19 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import Messages from "./dbMessages.js";
+import Pusher from 'pusher';
 
 // 2. APP CONFIG: create app instance in order to write api routes
 const app = express()
 const port = process.env.PORT || 9000 // the port where app will run 
+
+const pusher = new Pusher({
+    appId: "1566223",
+    key: "1ad03e4393f2972f76ba",
+    secret: "da0f47aafb8781fa7676",
+    cluster: "ap4",
+    useTLS: true
+  });
 
 // 3. MIDDLEWARE: 
 app.use(express.json);
@@ -81,3 +90,5 @@ app.get("/messages/sync", (req, res) => {
 
 // LISTENER
 app.listen(port,()=>console.log(`Listening on localhost:${port}`))
+
+
