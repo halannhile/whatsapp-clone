@@ -28,10 +28,17 @@ mongoose.connect(connection_url, {
 // API ROUTES:  
 app.get("/",(req,res)=>res.status(200).send('hello world'))
 
-// api route to post messages into MongoDB:
-app.post('/api/v1/messages/new', (req, res) => {
-    const dbMessage = req.body
+// API route to post new message to MongoDB:
 
+/* 
+this approach no longer works, received error "throw new MongooseError('Model.create() no longer accepts a callback');"
+
+explanation: 
+The error message "throw new MongooseError('Model.create() no longer accepts a callback');" indicates that you are using an outdated syntax for the create() method in Mongoose.
+Prior to version 6, the create() method accepted a callback function as the last argument to handle errors and the created document. However, in version 6, the callback function was removed and the create() method now returns a Promise.
+
+app.post("/messages/new", (req, res) => {
+    const dbMessage = req.body
     // use mongoose to create a new message using the data we sent in the body: 
     Messages.create(dbMessage, (err, data) => {
         if (err) {
@@ -43,7 +50,21 @@ app.post('/api/v1/messages/new', (req, res) => {
         }
     }) 
 })
+*/
 
+
+// new approach: use .then() and .catch() to handle the Promise returned by create():
+  app.post("/messages/new", (req, res) => {
+    const dbMessage = req.body;
+    Messages.create(dbMessage)
+      .then((createdMessage) => {
+        res.status(201).send(createdMessage);
+      })
+      .catch((error) => {
+        res.status(500).send(error);
+      });
+  });
+  
 
 // LISTENER
 app.listen(port,()=>console.log(`Listening on localhost:${port}`))
