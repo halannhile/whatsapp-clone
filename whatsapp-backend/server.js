@@ -1,16 +1,17 @@
-// IMPORTING 
+// 1. IMPORTING 
 import express from 'express';
 import mongoose from 'mongoose';
 import Messages from "./dbMessages.js";
 
-// APP CONFIG: create app instance in order to write api routes
+// 2. APP CONFIG: create app instance in order to write api routes
 const app = express()
 const port = process.env.PORT || 9000 // the port where app will run 
 
-// MIDDLEWARE: 
-app.use(express.json)
+// 3. MIDDLEWARE: 
+app.use(express.json);
 
-// DATABASE CONFIG (MongoDB)
+// 4. DATABASE CONFIG (MongoDB): 
+
 
 // cluster connection code: mongodb+srv://admin:<password>@cluster0.hkh6s1a.mongodb.net/?retryWrites=true&w=majority
 // version with <dbname> field: // cluster connection code: mongodb+srv://admin:<password>@cluster0.hkh6s1a.mongodb.net/<dbname>?retryWrites=true&w=majority
@@ -24,12 +25,12 @@ mongoose.connect(connection_url, {
     useUnifiedTopology: true
 })
 
-// ???
+// 5. ???
 
-// API ROUTES:  
+// 6. API ROUTES:  
 app.get("/",(req,res)=>res.status(200).send('hello world'))
 
-// API route to post new message to MongoDB:
+// 6.1. API route to post new message to MongoDB:
 
 /* 
 this approach no longer works, received error "throw new MongooseError('Model.create() no longer accepts a callback');"
@@ -55,17 +56,28 @@ app.post("/messages/new", (req, res) => {
 
 
 // new approach: use .then() and .catch() to handle the Promise returned by create():
-  app.post("/messages/new", (req, res) => {
+app.post("/messages/new", (req, res) => {
+const dbMessage = req.body;
+Messages.create(dbMessage)
+    .then((createdMessage) => {
+    res.status(201).send(createdMessage);
+    })
+    .catch((error) => {
+    res.status(500).send(error);
+    });
+});
+
+// 6.2. API route to return messages from MongoDB: 
+app.get("/messages/sync", (req, res) => {
     const dbMessage = req.body;
-    Messages.create(dbMessage)
-      .then((createdMessage) => {
-        res.status(201).send(createdMessage);
+    Messages.find(dbMessage)
+      .then((storedMessage) => {
+        res.status(200).send(storedMessage);
       })
       .catch((error) => {
         res.status(500).send(error);
       });
   });
-  
 
 // LISTENER
 app.listen(port,()=>console.log(`Listening on localhost:${port}`))
