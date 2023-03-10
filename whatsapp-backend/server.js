@@ -1,16 +1,19 @@
-// importing 
+// IMPORTING 
 import express from 'express';
 import mongoose from 'mongoose';
 
-// app config: create app instance in order to write api routes
+// APP CONFIG: create app instance in order to write api routes
 const app = express()
 const port = process.env.PORT || 9000 // the port where app will run 
 
-// middleware 
+// MIDDLEWARE 
 
-// database config (MongoDB)
+// DATABASE CONFIG (MongoDB)
+
 // cluster connection code: mongodb+srv://admin:<password>@cluster0.hkh6s1a.mongodb.net/?retryWrites=true&w=majority
 // version with <dbname> field: // cluster connection code: mongodb+srv://admin:<password>@cluster0.hkh6s1a.mongodb.net/<dbname>?retryWrites=true&w=majority
+
+// note: if some options are deprecated (e.g. useCreateIndex, useFindAndModify) in the new version of mongoose, simply remove them
 
 const connection_url = 'mongodb+srv://admin:sgbBbNSZ1J8JNGJk@cluster0.hkh6s1a.mongodb.net/whatsappdb?retryWrites=true&w=majority'
 
