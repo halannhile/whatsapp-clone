@@ -44,15 +44,18 @@ db.once('open',()=>{
     const changeStream = msgCollection.watch();
 
     // function to fire up once something has changed in our database: 
+    // when a change happens, save it into a change variable, console log it
     changeStream.on('change', (change)=>{
         console.log("a change occured",change);
 
+        // if the operation type of that change is 'insert', get the fullDocument (received by DB after the POST api call)
+        // save it to a variable messageDetails, then trigger pusher, which will save the user and message of messageDetails online 
         if (change.operationType === 'insert') {
             const messageDetails = change.fullDocument;
             pusher.trigger('messages', 'inserted',
             {
                 name: messageDetails.user,
-                message: messageDetails.message
+                message: messageDetails.message,
             })
         }
     });
