@@ -16,10 +16,17 @@ const pusher = new Pusher({
     useTLS: true
   });
 
-// // 3. MIDDLEWARE: 
-// app.use(express.json);
+// 3. MIDDLEWARE: 
+app.use(express.json);
 
-// 4. DATABASE CONFIG (MongoDB):
+// 4. DATABASE CONFIG (MongoDB): 
+
+
+// cluster connection code: mongodb+srv://admin:<password>@cluster0.hkh6s1a.mongodb.net/?retryWrites=true&w=majority
+// version with <dbname> field: // cluster connection code: mongodb+srv://admin:<password>@cluster0.hkh6s1a.mongodb.net/<dbname>?retryWrites=true&w=majority
+
+// note: if some options are deprecated (e.g. useCreateIndex, useFindAndModify) in the new version of mongoose, simply remove them
+
 const connection_url = 'mongodb+srv://admin:sgbBbNSZ1J8JNGJk@cluster0.hkh6s1a.mongodb.net/?retryWrites=true&w=majority'
 
 mongoose.connect(connection_url, {
@@ -32,12 +39,17 @@ const db = mongoose.connection
 
 db.once('open',()=>{
     console.log('DB is connected');
+    // note: the collection name "messagecontents" here has to be consistent with dbMessages because this collection will be watching
     const msgCollection = db.collection("messagecontents");
     const changeStream = msgCollection.watch();
 
+    // function to fire up once something has changed in our database: 
+    // when a change happens, save it into a change variable, console log it
     changeStream.on('change', (change)=>{
         console.log("a change occured",change);
 
+        // if the operation type of that change is 'insert', get the fullDocument (received by DB after the POST api call)
+        // save it to a variable messageDetails, then trigger pusher, which will save the user and message of messageDetails online 
         if (change.operationType === 'insert') {
             const messageDetails = change.fullDocument;
             pusher.trigger('messages', 'inserted',
@@ -55,6 +67,31 @@ db.once('open',()=>{
 app.get("/",(req,res)=>res.status(200).send('hello world'))
 
 // 6.1. API route to post new message to MongoDB:
+
+/* 
+this approach no longer works, received error "throw new MongooseError('Model.create() no longer accepts a callback');"
+
+explanation: 
+The error message "throw new MongooseError('Model.create() no longer accepts a callback');" indicates that you are using an outdated syntax for the create() method in Mongoose.
+Prior to version 6, the create() method accepted a callback function as the last argument to handle errors and the created document. However, in version 6, the callback function was removed and the create() method now returns a Promise.
+
+app.post("/messages/new", (req, res) => {
+    const dbMessage = req.body
+    // use mongoose to create a new message using the data we sent in the body: 
+    Messages.create(dbMessage, (err, data) => {
+        if (err) {
+            // internal server error code
+            res.status(500).send(err)
+        } else {
+            // 201 means created OK. return messages sent to our database
+            res.status(201).send(data)
+        }
+    }) 
+})
+*/
+
+
+// new approach: use .then() and .catch() to handle the Promise returned by create():
 app.post("/messages/new", (req, res) => {
 const dbMessage = req.body;
 Messages.create(dbMessage)
