@@ -27,7 +27,7 @@ app.use(express.json);
 
 // note: if some options are deprecated (e.g. useCreateIndex, useFindAndModify) in the new version of mongoose, simply remove them
 
-const connection_url = 'mongodb+srv://admin:sgbBbNSZ1J8JNGJk@cluster0.hkh6s1a.mongodb.net/whatsappdb?retryWrites=true&w=majority'
+const connection_url = 'mongodb+srv://admin:sgbBbNSZ1J8JNGJk@cluster0.hkh6s1a.mongodb.net/?retryWrites=true&w=majority'
 
 mongoose.connect(connection_url, {
     useNewUrlParser: true,
