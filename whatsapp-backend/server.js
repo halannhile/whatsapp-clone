@@ -16,8 +16,8 @@ const pusher = new Pusher({
     useTLS: true
   });
 
-// // 3. MIDDLEWARE: 
-// app.use(express.json);
+// 3. MIDDLEWARE: 
+app.use(express.json());
 
 // 4. DATABASE CONFIG (MongoDB):
 const connection_url = 'mongodb+srv://admin:sgbBbNSZ1J8JNGJk@cluster0.hkh6s1a.mongodb.net/?retryWrites=true&w=majority'
@@ -42,8 +42,10 @@ db.once('open',()=>{
             const messageDetails = change.fullDocument;
             pusher.trigger('messages', 'inserted',
             {
-                name: messageDetails.user,
+                name: messageDetails.name,
                 message: messageDetails.message,
+                timestamp: messageDetails.timestamp,
+                received: messageDetails.received
             })
         }
     });
