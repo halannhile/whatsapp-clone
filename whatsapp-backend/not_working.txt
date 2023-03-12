@@ -20,8 +20,7 @@ const pusher = new Pusher({
 app.use(express.json());
 
 // 4. DATABASE CONFIG (MongoDB):
-// sgbBbNSZ1J8JNGJk
-const connection_url = 'mongodb+srv://admin:sgbBbNSZ1J8JNGJk@cluster0.hkh6s1a.mongodb.net/?retryWrites=true&w=majority'
+const connection_url = 'mongodb+srv://admin:sgbBbNSZ1J8JNGJk@cluster0.hkh6s1a.mongodb.net/whatsappdb?retryWrites=true&w=majority'
 
 mongoose.connect(connection_url, {
     useNewUrlParser: true,
@@ -47,14 +46,13 @@ db.once('open',()=>{
                 message: messageDetails.message,
                 timestamp: messageDetails.timestamp,
                 received: messageDetails.received
-            })
+            });
         }
-        else {
-                console.log("Error triggering Pusher");
-            }
+            // else {
+            //     console.log("Error triggering Pusher");
+            // }
     });
 });
-
 
 
 // 6. API ROUTES:  
@@ -86,3 +84,5 @@ app.get("/messages/sync", (req, res) => {
 
 // LISTENER
 app.listen(port,()=>console.log(`Listening on localhost:${port}`))
+
+
