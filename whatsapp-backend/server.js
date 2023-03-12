@@ -3,6 +3,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import Messages from "./dbMessages.js";
 import Pusher from 'pusher';
+import cors from "cors";
 
 // 2. APP CONFIG: create app instance in order to write api routes
 const app = express()
@@ -18,6 +19,7 @@ const pusher = new Pusher({
 
 // 3. MIDDLEWARE: 
 app.use(express.json());
+app.use(cors());
 
 // 4. DATABASE CONFIG (MongoDB):
 // sgbBbNSZ1J8JNGJk
