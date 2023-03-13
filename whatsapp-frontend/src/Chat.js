@@ -1,17 +1,31 @@
 import { SearchOutlined, AttachFile, MoreVert } from '@mui/icons-material'
 import { Avatar, IconButton } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import "./Chat.css"
 
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 import MicIcon from '@mui/icons-material/Mic';
 
+import axios from "./axios"
+
 function Chat({ messages }) {
 
+  // state
+  const [input, setInput] = useState("");
+
   // preventDefault will prevent the app from refreshing when we hit Enter to send a new message
-  const sendMessage = (event) => {
+  const sendMessage = async (event) => {
     event.preventDefault();
-  }
+
+    await axios.post('/messages/new', {
+      message: input,
+      name: "Nhi Le", // if we have Google sign-in authentication, we can use the name from Google here instead of hard-coding
+      timestamp: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString(),
+      received: true
+    });
+
+    setInput("");
+  };
 
   return (
     <div className="chat">
@@ -54,6 +68,7 @@ function Chat({ messages }) {
           {/* note: using a form for the message box (unlike sidebar's search which uses input) */}
           <form>
             <input
+              value = {input} onChange={event => setInput(event.target.value)}
               placeholder="Type a message"
               type="text"
             />
