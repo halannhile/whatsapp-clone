@@ -9,13 +9,13 @@ import axios from './axios';
 function App() {
 
   // state: initially empty array
-  const [messages, setMessage] = useState([]);
+  const [messages, setMessages] = useState([]);
   
   // fetching all the initial info:
   useEffect(() => {
     axios.get('/messages/sync')
     .then(response => {
-      setMessage(response.data)
+      setMessages(response.data)
     })
   }, [])
 
@@ -27,10 +27,22 @@ function App() {
     });
 
     const channel = pusher.subscribe('messages');
-    channel.bind('inserted', (data) => {
-      alert(JSON.stringify(data));
+    channel.bind('inserted', (newMessage) => {
+      // send a pop-up alert every time there's a new message
+      alert(JSON.stringify(newMessage));
+      
+      // insert newMessage into all the current messages in setMessages
+      setMessages([...messages, newMessage])
     });
-  }, []);
+
+    // this ensures that even when messages change, we only have 1 subscriber => very performant
+    // if there're a big group chat with many people, the app won't be bombarded with alerts about new listeners
+    return () => {
+      channel.unbind_all();
+      channel.unsubscribe();   
+    };
+
+  }, [messages]);
 
   // console log when messages change: 
   console.log(messages);
