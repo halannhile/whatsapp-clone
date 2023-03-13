@@ -28,9 +28,11 @@ function App() {
 
     const channel = pusher.subscribe('messages');
     channel.bind('inserted', (newMessage) => {
+
       // send a pop-up alert every time there's a new message
-      alert(JSON.stringify(newMessage));
-      
+      // uncomment if want to suppress pop-up notifications
+      /* alert(JSON.stringify(newMessage)); */
+
       // insert newMessage into all the current messages in setMessages
       setMessages([...messages, newMessage])
     });
