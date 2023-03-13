@@ -6,7 +6,7 @@ import "./Chat.css"
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 import MicIcon from '@mui/icons-material/Mic';
 
-function Chat() {
+function Chat({ messages }) {
   return (
     <div className="chat">
 
@@ -24,34 +24,19 @@ function Chat() {
             <IconButton><AttachFile/></IconButton>
             <IconButton><MoreVert/></IconButton>
           </div>
-          
-          
         </div>
 
         <div className="chat__body">
-          
-          {/* this is the other person's message */}
-          <p className="chat__message">          
-            {/* the message */}
-            <span className="chat__name">cubo</span>
-            This is a message
-            {/* message timestamp */}
-            <span className="chat__timestamp">
-              {new Date().toUTCString()}
-            </span>
-          </p>
 
-          {/* this is your message */}
-          {/* note: we're keeping the styling of the original message, but adding additional stylings for receiver's message */}
-          <p className="chat__message chat__receiver">          
-            {/* the message */}
-            <span className="chat__name">cubo</span>
-            This is a message
-            {/* message timestamp */}
-            <span className="chat__timestamp">
-              {new Date().toUTCString()}
-            </span>
+          {/* for every new message, map it to a <p> tag  */}
+      
+          {messages.map((message) => (
+            <p className={`chat__message ${message.received && "chat__receiver"}`}>          
+            <span className="chat__name">{message.name}</span>
+            {message.message}
+            <span className="chat__timestamp">{message.timestamp}</span>
           </p>
+          ))}
         </div>
 
         <div className="chat__footer">
