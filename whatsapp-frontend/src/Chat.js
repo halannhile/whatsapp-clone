@@ -21,7 +21,7 @@ function Chat({ messages }) {
       message: input,
       name: "Nhi Le", // if we have Google sign-in authentication, we can use the name from Google here instead of hard-coding
       timestamp: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString(),
-      received: true
+      received: false
     });
 
     setInput("");
