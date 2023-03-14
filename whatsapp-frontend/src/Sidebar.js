@@ -45,10 +45,10 @@ function Sidebar() {
         </div>
 
         <div className="sidebar__chats">
-          <SidebarChat/>
-          <SidebarChat/>
-          <SidebarChat/>
-          <SidebarChat/>
+          <SidebarChat roomName="Room A"/>
+          <SidebarChat roomName="Room B"/>
+          <SidebarChat roomName="Room C"/>
+          <SidebarChat roomName="Room D"/>
         </div>
 
 

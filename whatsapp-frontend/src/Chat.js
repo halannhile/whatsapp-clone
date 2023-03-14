@@ -35,7 +35,7 @@ function Chat({ messages }) {
           <Avatar/>
 
           <div className="chat__headerInfo">
-            <h3>Room name</h3>
+            <h3>Room A</h3>
             <p>last seen at...</p>
           </div>
 
