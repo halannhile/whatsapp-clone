@@ -12,5 +12,6 @@ https://nhile-whatsapp-mern.netlify.app/
 
 ### App demo: 
 
+![Demo Video](app-demo/app-demo.mp4)
 
 
