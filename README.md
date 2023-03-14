@@ -3,6 +3,9 @@
 ### Link to app: 
 https://nhile-whatsapp-mern.netlify.app/
 
+![app](https://user-images.githubusercontent.com/55796146/224989694-d7542ca3-06b3-4641-84b8-558ba14eb6d1.PNG)
+
+
 ### Technologies: 
 * Front-end: React Native, Material UI 
 * Backend: Express.js, Node.js
