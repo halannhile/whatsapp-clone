@@ -21,6 +21,6 @@ https://user-images.githubusercontent.com/55796146/224988255-b9732f9e-43d3-454b-
 
 This app is not perfect since I just wanted to learn as many technologies as I can in a limited amount of time (finished this build in 1 week). In the future, I'd like to add the following features for the app: 
 
-* Authentication with Google Sign-in option so that many people can use this app at the same time, chatting in the same room! 
+* Authentication with Google Sign-in option so that many people can use this app at the same time, chatting in the same room! (for now, I have to use Postman to send messages from the other person's perspective)
 * Dynamic rooms with the option to create, delete and join rooms
 * Clickable buttons for attaching files or for searching rooms
