@@ -13,7 +13,6 @@ https://nhile-whatsapp-mern.netlify.app/
 * Backend: Express.js, Node.js
 * Server: Pusher, Rest APIs 
 * Database: MongoDB
-* Others: Firebase (for authentication & hosting), Netlify (for deployment) 
 
 ### App demo: 
 
