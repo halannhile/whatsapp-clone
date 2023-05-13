@@ -1,7 +1,7 @@
 ### Whatsapp clone project to practice building a full-stack web app using the MERN stack
 
 ### Link to app: 
-* note: currently, the MongoDB database is still linked to localhost:9000 so you can't use the app with your device at the link below just yet, but check back later when I've finished linking the final app's url to the database and you should be able to use the app as seen in the app demo section below!
+* note: currently, the MongoDB database is still linked to localhost:9000, so you can't use the app with your device at the link below just yet, but check back later when I've finished linking the final app's url to the database and you should be able to use the app as seen in the app demo section below!
 
 https://nhile-whatsapp-mern.netlify.app/
 
